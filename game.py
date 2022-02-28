@@ -56,6 +56,7 @@ class Game:
                 y2 = c.y
             end = self.board[x2][y2]
             c.x = x2
+
             c.y = y2
 
 
