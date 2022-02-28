@@ -19,7 +19,7 @@ class Game:
                 x = random.randint(0, constants.WORLD_X-1)
                 y = random.randint(0, constants.WORLD_Y-1)
                 if self.board[x][y] is None:
-                    c = creature.RandomCreature(x, y, 3 if i%101 == 0 else (i % 2)+1)
+                    c = creature.RandomCreature(x, y, i % (constants.NUM_TYPES) + 1 )
                     self.creatures.append(c)
                     self.board[x][y] = c
                     break
@@ -81,6 +81,10 @@ def get_color(t):
         return 0, 255, 0
     if t == 3:
         return 0, 0, 255
+    if t == 4:
+        return 0, 255, 255
+    if t == 5:
+        return 255, 255, 0
     return 255 if t & 1 else 0, 255 if t & 2 else 0, 255 if t & 4 else 0
 
 
