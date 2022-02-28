@@ -11,30 +11,22 @@ import math
 
 class Game:
     def __init__(self):
-        self.board = np.zeros([constants.WORLD_X, constants.WORLD_Y])
+        self.board = [[None for i in range(constants.WORLD_Y)] for j in range(constants.WORLD_X)]
         self.creatures = []
 
-        for i in range(2000):
+        for i in range(5000):
             while True:
                 x = random.randint(0, constants.WORLD_X-1)
                 y = random.randint(0, constants.WORLD_Y-1)
-                if self.board[x][y] == 0:
-                    c = creature.RandomCreature(x, y, (i % 3) + 1)
+                if self.board[x][y] is None:
+                    c = creature.RandomCreature(x, y, 3 if i%101 == 0 else (i % 2)+1)
                     self.creatures.append(c)
-                    self.put_creature(c)
+                    self.board[x][y] = c
                     break
         global SCREEN, CLOCK
         pygame.init()
         SCREEN = pygame.display.set_mode((constants.WINDOW_X, constants.WINDOW_Y))
         CLOCK = pygame.time.Clock()
-
-    def populate_board(self):
-        self.board.fill(0)
-        for c in self.creatures:
-            self.put_creature(c)
-
-    def put_creature(self, c):
-        self.board[c.x][c.y] = c.type
 
     def one_step(self):
         for c in self.creatures:
@@ -46,7 +38,7 @@ class Game:
                     if x1 < 0 or x1 >= constants.WORLD_X or y1 < 0 or y1 >= constants.WORLD_Y:
                         v[x][y] = -1
                         continue
-                    v[x][y] = self.board[x1][y1]
+                    v[x][y] = 0 if not self.board[x1][y1] else self.board[x1][y1].type
             x, y = c.move(v)
             x2 = c.x + x
             y2 = c.y + y
@@ -55,8 +47,17 @@ class Game:
             if y2 < 0 or y2 >= constants.WORLD_Y:
                 y2 = c.y
             end = self.board[x2][y2]
-            c.x = x2
-            c.y = y2
+            if not end:
+                self.board[c.x][c.y] = None
+                self.board[x2][y2] = c
+                c.x = x2
+                c.y = y2
+                continue
+            wins = constants.superior(c.type, end.type)
+            if wins == 1:
+                end.type = c.type
+                continue
+
 
 
 
