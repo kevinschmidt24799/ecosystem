@@ -1,3 +1,4 @@
+import copy
 import random
 import sys
 
@@ -13,13 +14,12 @@ class Game:
     def __init__(self):
         self.board = [[None for i in range(constants.WORLD_Y)] for j in range(constants.WORLD_X)]
         self.creatures = []
-
-        for i in range(5000):
+        for i in range(constants.CREATURE_COUNT):
             while True:
                 x = random.randint(0, constants.WORLD_X-1)
                 y = random.randint(0, constants.WORLD_Y-1)
                 if self.board[x][y] is None:
-                    c = creature.RandomCreature(x, y, i % (constants.NUM_TYPES) + 1 )
+                    c = creature.SimpleCreature(x, y, i % (constants.NUM_TYPES) + 1)
                     self.creatures.append(c)
                     self.board[x][y] = c
                     break
@@ -46,16 +46,17 @@ class Game:
                 x2 = c.x
             if y2 < 0 or y2 >= constants.WORLD_Y:
                 y2 = c.y
-            end = self.board[x2][y2]
-            if not end:
+            if not self.board[x2][y2]:
                 self.board[c.x][c.y] = None
                 self.board[x2][y2] = c
                 c.x = x2
                 c.y = y2
                 continue
-            wins = constants.superior(c.type, end.type)
+            wins = constants.superior(c.type, self.board[x2][y2].type)
             if wins == 1:
-                end.type = c.type
+                self.board[x2][y2].move = c.move
+                self.board[x2][y2].type = c.type
+
                 continue
 
 
