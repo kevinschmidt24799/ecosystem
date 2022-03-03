@@ -19,7 +19,7 @@ class Game:
                 x = random.randint(0, constants.WORLD_X-1)
                 y = random.randint(0, constants.WORLD_Y-1)
                 if self.board[x][y] is None:
-                    c = creature.SimpleCreature(x, y, i % (constants.NUM_TYPES) + 1)
+                    c = creature.RandomCreature(x, y, i % (constants.NUM_TYPES) + 1)
                     self.creatures.append(c)
                     self.board[x][y] = c
                     break

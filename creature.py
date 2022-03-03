@@ -39,6 +39,7 @@ class SimpleCreature(Creature):
         return x, y
 
 
+# does not work for num_types > 3
 class PatientCreature(Creature):
     def move(self, view):
         for x1 in range(constants.VISION):
