@@ -12,7 +12,7 @@ class Creature:
 
 class StillCreature(Creature):
     def move(self, view):
-        return 0,0
+        return 0, 0
 
 
 class RandomCreature(Creature):
@@ -34,8 +34,8 @@ class SimpleCreature(Creature):
                 elif constants.superior(self.type, view[x1][y1]) == 2:
                     x -= x1 - (constants.VISION-1)/2
                     y -= y1 - (constants.VISION-1)/2
-        x = 1 if x > 0 else (-1 if x < 0 else random.randint(-1,1))
-        y = 1 if y > 0 else (-1 if y < 0 else random.randint(-1,1))
+        x = 1 if x > 0 else (-1 if x < 0 else random.randint(-1, 1))
+        y = 1 if y > 0 else (-1 if y < 0 else random.randint(-1, 1))
         return x, y
 
 
