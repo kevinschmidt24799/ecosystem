@@ -1,5 +1,6 @@
 import random
-
+import tensorflow as tf
+import math
 import constants
 
 
@@ -50,3 +51,19 @@ class PatientCreature(Creature):
                     return x1-1, y1-1
         return 0, 0
 
+
+class SmartCreature(Creature):
+    def __init__(self, x, y, ctype, model):
+        self.x = x
+        self.y = y
+        self.type = ctype
+        self.model = model
+
+    def move(self, view):
+        t = tf.convert_to_tensor(view)
+        t = tf.reshape(t, [1, -1])
+        x = self.model.call(t, training=None, mask=None)
+        x = tf.reshape(x, [-1])
+        mi = tf.argmax(x, axis=None, name=None)
+        d = int(mi)
+        return math.floor(d/3) - 1, d%3 - 1

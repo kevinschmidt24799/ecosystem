@@ -1,7 +1,7 @@
 import math
 
-WORLD_X = 15
-WORLD_Y = 15
+WORLD_Y = 30
+WORLD_X = 30
 
 CREATURE_RATIO = 0.4
 

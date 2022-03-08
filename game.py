@@ -4,6 +4,8 @@ import sys
 
 import numpy
 import numpy as np
+from keras.models import load_model
+
 import constants
 import creature
 import pygame
@@ -17,12 +19,16 @@ class Game:
         self.board = [[None for i in range(constants.WORLD_Y)] for j in range(constants.WORLD_X)]
         self.creatures = []
         self.counts = [0]*constants.NUM_TYPES
+        model = load_model("my_model.h5")
         for i in range(constants.CREATURE_COUNT):
             while True:
                 x = random.randint(0, constants.WORLD_X-1)
                 y = random.randint(0, constants.WORLD_Y-1)
                 if self.board[x][y] is None:
-                    c = creature.RandomCreature(x, y, i % (constants.NUM_TYPES) + 1)
+                    if i % constants.NUM_TYPES == 0:
+                        c = creature.SmartCreature(x, y, i % constants.NUM_TYPES + 1, model)
+                    else:
+                        c = creature.RandomCreature(x, y, i % constants.NUM_TYPES + 1)
                     self.creatures.append(c)
                     self.board[x][y] = c
                     self.counts[c.type-1] += 1
