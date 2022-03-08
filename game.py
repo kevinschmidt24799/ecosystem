@@ -34,9 +34,6 @@ class Game:
                     self.counts[c.type-1] += 1
                     break
         global SCREEN, CLOCK
-        pygame.init()
-        SCREEN = pygame.display.set_mode((constants.WINDOW_X, constants.WINDOW_Y))
-        CLOCK = pygame.time.Clock()
 
     def one_step(self):
         for c in self.creatures:
@@ -82,10 +79,10 @@ class Game:
 
 
     def draw_game(self):
-        SCREEN.fill((255, 255, 255))
+        constants.SCREEN.fill((255, 255, 255))
 
         for c in self.creatures:
-            pygame.draw.rect(SCREEN, get_color(c.type), pygame.Rect(constants.WINDOW_X/constants.WORLD_X*c.x,
+            pygame.draw.rect(constants.SCREEN, get_color(c.type), pygame.Rect(constants.WINDOW_X/constants.WORLD_X*c.x,
                                                                     constants.WINDOW_Y/constants.WORLD_Y*c.y,
                                                                     constants.WINDOW_X/constants.WORLD_X,
                                                                     constants.WINDOW_Y/constants.WORLD_Y))

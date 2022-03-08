@@ -1,7 +1,7 @@
 import math
 
-WORLD_Y = 30
-WORLD_X = 30
+WORLD_Y = 40
+WORLD_X = 40
 
 CREATURE_RATIO = 0.4
 
@@ -14,6 +14,8 @@ VISION = 5
 
 NUM_TYPES = 3
 
+SCREEN = None
+CLOCK = None
 
 # returns which type wins, given 2 ints. 0-> tie, 1-> first wins, 2-> second wins
 def superior(me, other):
