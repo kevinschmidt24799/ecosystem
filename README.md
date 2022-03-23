@@ -28,4 +28,4 @@ I ended thinking of a reasonably clean solution: running 100 random games, for e
 
 <img src="Demo%20Images/Neural%20Net%20Strategy.png" alt="drawing" width="500"/>
 
-This image is of a game in which the neural net (red) has effectively won, because it beats the only remaining creatures (green). As you can see, it forms a bizarre formation, and will slowly and patiently finish off the green. A video of how the neural net plays is https://youtu.be/PNqL7vxpSmE
+This image is of a game in which the neural net (red) has effectively won, because it beats the only remaining creatures (green). As you can see, it forms a bizarre formation, and will slowly and patiently finish off the green. A video of how the neural net plays is uploaded at: https://youtu.be/PNqL7vxpSmE
