@@ -9,12 +9,15 @@ The balanced distribution would occur in almost every case. Whenever any species
 The most surprising result though, was that when a strategy was too "smart", paired against randomness, it would almost always create an unstable state. Surprisingly though, it was consistently not one that it won. It would quickly hunt its prey to extinction, and then with just it, and its predator remaining, slowly die out. This gave me apprehensions about what it looked like to properly play the game, as being too efficient of a predator would most often lose you the game. 
 
 ####Balanced distribution (almost all cases)
+
 <img src="Demo%20Images/Balanced%20Distribution.png" alt="drawing" width="500"/>
 
 ####Static state in which all species prefer inactivity
+
 <img src="Demo%20Images/Static%20Stable%20Distribution.png" alt="drawing" width="500"/>
 
 ####Unstable state wherein yellow was "too predatory"
+
 <img src="Demo%20Images/Unstable%20Distribution.png" alt="drawing" width="500"/>
 
 ##Machine Learning Approach with TensorFlow
