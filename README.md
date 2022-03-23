@@ -21,4 +21,11 @@ The most surprising result though, was that when a strategy was too "smart", pai
 <img src="Demo%20Images/Unstable%20Distribution.png" alt="drawing" width="500"/>
 
 ## Machine Learning Approach with TensorFlow
-My initial desire was to have different neural nets play complete games against random or semi-intelligent opponents to train. I was interested in learning to use Keras dataframes which are insistent on having both input data and labels (which tell what it expects of the data). I briefly contemplated a hacky solution in which I feed in dummy data for labels, and then use a custom evaluation function that ran the trial using the current iteration of a model, returning a loss based on performance and ignoring the labels. However, this 
+My initial desire was to have different neural nets play complete games against random or semi-intelligent opponents to train. I was interested in learning to use Keras dataframes which are insistent on having both input data and labels (which tell what it expects of the data). I briefly contemplated a hacky solution in which I feed in dummy data for labels, and then use a custom evaluation function that ran the trial using the current iteration of a model, returning a loss based on performance and ignoring the labels. However, in the spirit of learning Keras properly, I decided otherwise. 
+
+I ended thinking of a reasonably clean solution: running 100 random games, for each move, recording the creature's field of vision, decided move, and whether that creature won or lost. Then, treating the FoV as data, and the move, as well as result as labels, I trained the network. With only 100 games of random moves as training data, I was more than doubtful of the strength of the model. After all, the correlation between any single move with winning or losing is strenuously small. Shockingly though, the neural net ended up significantly outperforming random and simple creatures, winning virtually every game. The neural net plays strangely, with no discernible strategy. Seemingly by magic though, its predator will suddenly die out. 
+
+
+<img src="Demo%20Images/Neural%20Net%20Strategy.png" alt="drawing" width="500"/>
+
+This image is of a game in which the neural net (red) has effectively won, because it beats the only remaining creatures (green). As you can see, it forms a bizarre formation, and will slowly and patiently finish off the green. A video of how the neural net plays is https://youtu.be/PNqL7vxpSmE
